@@ -1,0 +1,23 @@
+- name: Ensure SSH Directory Exists.
+  file:
+    dest: "{{ dest_key | dirname }}"
+    mode: 0700
+    state: directory
+
+- name: Copy SSH Private Key
+  copy:
+    src: "{{ source_key }}"
+    dest: "{{ dest_key }}"
+    mode: 0600
+
+- name: Copy SSH Public Key
+  copy:
+    src: "{{ source_key }}.pub"
+    dest: "{{ dest_key }}.pub"
+    mode: 0644
+
+- name: Set Authorized Key
+  authorized_key:
+    user: "{{ lookup('env', 'USER') }}"
+    state: present
+    key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
