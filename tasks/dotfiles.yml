@@ -12,6 +12,3 @@
 
 - name: Setup Stow 
   shell: cd $HOME/.dotfiles && ./setup-stow
-
-- name: Install Dot Files Via Stow 
-  shell: cd $HOME/.dotfiles && ./install
