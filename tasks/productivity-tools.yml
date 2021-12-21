@@ -21,9 +21,25 @@
     - install
     - productivity
 
+- name: Download RipGrep
+  ansible.builtin.get_url: 
+    url: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+    dest: /usr/local/bin/ripgrep_13.0.0_amd64.deb
+  tags:
+    - install
+    - productivity
+
 - name: Install RipGrep
   apt:
-    name: ripgrep
+    deb: /usr/local/bin/ripgrep_13.0.0_amd64.deb
+  tags:
+    - install
+    - productivity
+
+- name: Cleanup RipGrep Installation
+  ansible.builtin.file:
+    path: /usr/local/bin/ripgrep_13.0.0_amd64.deb
+    state: absent
   tags:
     - install
     - productivity
