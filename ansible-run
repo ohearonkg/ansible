@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+## Install Ansible
+apt-add-repository -y ppa:ansible/ansible
+apt-get update -y
+apt-get install -y curl git software-properties-common ansible
+
+## Pull Ansible Script (Ansible Pull Auto Executes)
+sudo ansible-pull -U https://github.com/ohearonkg/ansible.git --ask-valut-pass

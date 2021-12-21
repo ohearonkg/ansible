@@ -1,0 +1,28 @@
+- name: Clone Neovim
+  ansible.builtin.git:
+    repo: 'https://github.com/neovim/neovim.git'
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+  tags: 
+    - neovim
+
+- name: Build Neovim
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 20"
+  tags: 
+    - neovim
+
+- name: Install Neovim
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  tags: 
+    - neovim
+
+- name: Install Packer (Lua Package Manager)
+  ansible.builtin.git:
+    repo: https://github.com/wbthomason/packer.nvim
+    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  tags: 
+    - neovim
+
+- name: Install Neovim Plugins Via Packer
+  ansible.builtin.shell:
+    cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

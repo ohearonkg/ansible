@@ -4,6 +4,7 @@
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
     personal: "{{ lookup('env', 'HOME') }}/personal"
+    node_lts: "16.13.1"
 
   pre_tasks:
   - name: Update Apt
@@ -16,5 +17,9 @@
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/git.yml
+    - include: tasks/core.yml
     - include: tasks/zsh.yml
     - include: tasks/dotfiles.yml
+    - include: tasks/productivity-tools.yml
+    - include: tasks/node.yml
+    - include: tasks/nvim.yml

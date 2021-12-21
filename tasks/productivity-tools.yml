@@ -1,0 +1,53 @@
+- name: Install Tmux
+  apt: 
+    name: tmux
+  tags:
+    - install
+    - productivity
+
+- name: Add Alacritty Apt Repository
+  ansible.builtin.apt_repository:
+    repo: "ppa:mmstick76/alacritty"
+    state: present
+    update_cache: true
+  tags:
+    - install
+    - productivity
+
+- name: Install Alacritty
+  apt:
+    name: alacritty
+  tags:
+    - install
+    - productivity
+
+- name: Install RipGrep
+  apt:
+    name: ripgrep
+  tags:
+    - install
+    - productivity
+
+- name: Download Bat 
+  ansible.builtin.get_url: 
+    url: https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb 
+    dest: /usr/local/bin/bat.deb
+  tags:
+    - install
+    - productivity
+
+- name: Install Bat
+  apt:
+    deb: /usr/local/bin/bat.deb
+  tags:
+    - install
+    - productivity
+
+- name: Cleanup Bat Installation
+  ansible.builtin.file:
+    path: /usr/local/bin/bat.deb
+    state: absent
+  tags:
+    - install
+    - productivity
+
