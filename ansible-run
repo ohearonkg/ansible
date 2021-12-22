@@ -6,7 +6,7 @@ apt-get update -y
 apt-get install -y curl git software-properties-common ansible
 
 ## POSIX Collection Used For Setting Authorized Key
-sudo ansible-galaxy collection install ansible.posix
+# sudo ansible-galaxy collection install ansible.posix
 
 ## Pull Ansible Script (Ansible Pull Auto Executes)
-sudo ansible-playbook local.yml --ask-vault-pass
+sudo ansible-playbook local.yml 
