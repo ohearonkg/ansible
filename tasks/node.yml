@@ -34,3 +34,10 @@
   tags: 
     - install
     - node
+
+- name: Install Prettier Globally
+  ansible.builtin.shell: 
+    cmd: zsh -ic "npm install -g prettier" 
+  tags: 
+    - install
+    - node
