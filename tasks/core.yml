@@ -15,3 +15,15 @@
     - install
     - neovim
     - core
+
+- name: Clone Nerd Font
+  ansible.builtin.git:
+    repo: 'https://github.com/ryanoasis/nerd-fonts.git'
+    dest: "{{ lookup('env', 'HOME') }}/nerd-fonts"
+  tags: 
+    - install
+    - core
+
+- name: Install Nerd Font
+  ansible.builtin.shell: 
+    cmd: "cd {{ lookup('env', 'HOME') }}/nerd-fonts && install.sh JetBrainsMono"
