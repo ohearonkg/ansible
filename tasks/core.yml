@@ -20,6 +20,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/ryanoasis/nerd-fonts.git'
     dest: "{{ lookup('env', 'HOME') }}/nerd-fonts"
+    depth: 1
   tags:
     - install
     - neovim
