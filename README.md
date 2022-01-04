@@ -2,9 +2,6 @@
 This playbook exists to automate the setup and configuration of a new machine for
 terminal based development on ubuntu machines, and consists of the following tasks:
 
-## SSH Task
-- [x] Decrypt public and private SSH keys placing them in correct location
-
 ## GIT Task
 - [x] Setup Personal Email
 - [x] Setup Personal Name
