@@ -1,0 +1,39 @@
+- name: Ensure SSH Directory Exists With Correct Permissions
+  file:
+    path: "{{ ssh_destination_directory }}"
+    mode: 0700
+    state: directory
+  tags:
+    - dotfiles
+    - install
+    - ssh
+
+- name: Add Private SSH Key
+  copy:
+    src: "{{ private_ssh_key_source }}"
+    dest: "{{ private_ssh_key_destination }}"
+    mode: 0600
+  tags:
+    - dotfiles
+    - install
+    - ssh
+
+- name: Add Public SSH Key Public
+  copy:
+    src: "{{ public_ssh_key_source }}"
+    dest: "{{ public_ssh_key_destination }}"
+    mode: 0644
+  tags:
+    - dotfiles
+    - install
+    - ssh
+
+- name: Set Authorized Key
+  ansible.posix.authorized_key:
+    user: "{{ lookup('env', 'USER') }}"
+    state: present
+    key: "{{ lookup('file', public_ssh_key_destination) }}"
+  tags:
+    - dotfiles
+    - install
+    - ssh
