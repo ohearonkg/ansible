@@ -1,21 +1,21 @@
 - name: Download FNM
   ansible.builtin.get_url: 
     url: https://fnm.vercel.app/install
-    dest: /usr/local/bin/fnm-install.sh
+    dest: "{{ lookup('env', 'HOME') }}/fnm-install.sh"
   tags: 
     - install
     - node
 
 - name: Install FNM
-  ansible.builtin.shell: 
-    cmd: cat /usr/local/bin/fnm-install.sh | bash -s -- --skip-shell
+  ansible.builtin.script: 
+    cmd: "{{ lookup('env', 'HOME') }}/fnm-install.sh --skip-shell"
   tags: 
     - install
     - node
 
 - name: Cleanup FNM Install Script
   ansible.builtin.file:
-    path: /usr/local/bin/fnm-install.sh 
+    path: "{{ lookup('env', 'HOME') }}/fnm-install.sh"
     state: absent
   tags: 
     - install
@@ -23,21 +23,21 @@
 
 - name: Install Current LTS Node Version
   ansible.builtin.shell: 
-    cmd: zsh -ic "fnm install {{ node_lts }}" 
+    cmd: zsh -ic "fnm install {{ node_lts }}"
   tags: 
     - install
     - node
 
 - name: Instruct FNM To Use Node LTS Version
   ansible.builtin.shell: 
-    cmd: zsh -ic "fnm use {{ node_lts }}" 
+    cmd: zsh -ic "fnm use {{ node_lts }}"
   tags: 
     - install
     - node
 
 - name: Install Prettier Globally
   ansible.builtin.shell: 
-    cmd: zsh -ic "npm install -g prettier" 
+    cmd: zsh -ic "npm install -g prettier"
   tags: 
     - install
     - node

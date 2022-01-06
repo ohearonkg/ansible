@@ -7,7 +7,7 @@
 
 - name: Add Alacritty Apt Repository
   ansible.builtin.apt_repository:
-    repo: "ppa:mmstick76/alacritty"
+    repo: ppa:mmstick76/alacritty
     state: present
     update_cache: true
   tags:
@@ -22,6 +22,7 @@
     - productivity
 
 - name: Download RipGrep
+  become: true
   ansible.builtin.get_url: 
     url: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
     dest: /usr/local/bin/ripgrep_13.0.0_amd64.deb
@@ -30,6 +31,7 @@
     - productivity
 
 - name: Install RipGrep
+  become: true
   apt:
     deb: /usr/local/bin/ripgrep_13.0.0_amd64.deb
   tags:
@@ -37,6 +39,7 @@
     - productivity
 
 - name: Cleanup RipGrep Installation
+  become: true
   ansible.builtin.file:
     path: /usr/local/bin/ripgrep_13.0.0_amd64.deb
     state: absent
@@ -45,6 +48,7 @@
     - productivity
 
 - name: Download Bat 
+  become: true
   ansible.builtin.get_url: 
     url: https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb 
     dest: /usr/local/bin/bat.deb
@@ -53,6 +57,7 @@
     - productivity
 
 - name: Install Bat
+  become: true
   apt:
     deb: /usr/local/bin/bat.deb
   tags:
@@ -60,6 +65,7 @@
     - productivity
 
 - name: Cleanup Bat Installation
+  become: true
   ansible.builtin.file:
     path: /usr/local/bin/bat.deb
     state: absent
