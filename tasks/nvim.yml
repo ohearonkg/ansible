@@ -25,9 +25,3 @@
     dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
   tags: 
     - neovim
-
-- name: Install Neovim Plugins Via Packer
-  ansible.builtin.shell:
-    cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  tags: 
-    - neovim
