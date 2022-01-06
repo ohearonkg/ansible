@@ -7,8 +7,9 @@
     - dotfiles
 
 - name: Change shell to zsh
+  become: true
   ansible.builtin.shell: 
-    cmd: chsh -s $(which zsh)
+    cmd: usermod --shell /bin/zsh {{ lookup('env', 'USER') }}
   tags: 
     - install
     - zsh
