@@ -1,6 +1,7 @@
 - hosts: localhost
   vars:
     node_lts: "16.13.1"
+
     ssh_key_encryption_algorithm: "id_ed25519"
     ssh_source_directory: "./.ssh"
     ssh_destination_directory: "{{ lookup('env', 'HOME') + '/.ssh' }}"
@@ -10,6 +11,8 @@
 
     private_ssh_key_source: "{{ ssh_source_directory + '/' + ssh_key_encryption_algorithm }}"
     private_ssh_key_destination: "{{ ssh_destination_directory + '/' + ssh_key_encryption_algorithm }}"
+
+    neovim_version: "v0.6.1"
 
   pre_tasks:
     - name: Update Apt
