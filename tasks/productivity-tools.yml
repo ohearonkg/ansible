@@ -1,5 +1,5 @@
 - name: Install Tmux
-  apt: 
+  apt:
     name: tmux
   tags:
     - install
@@ -23,7 +23,7 @@
 
 - name: Download RipGrep
   become: true
-  ansible.builtin.get_url: 
+  ansible.builtin.get_url:
     url: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
     dest: /usr/local/bin/ripgrep_13.0.0_amd64.deb
   tags:
@@ -47,10 +47,10 @@
     - install
     - productivity
 
-- name: Download Bat 
+- name: Download Bat
   become: true
-  ansible.builtin.get_url: 
-    url: https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb 
+  ansible.builtin.get_url:
+    url: https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb
     dest: /usr/local/bin/bat.deb
   tags:
     - install
@@ -73,3 +73,18 @@
     - install
     - productivity
 
+- name: Install Tree
+  become: true
+  apt:
+    name: tree
+  tags:
+    - install
+    - productivity
+
+- name: Install XClip
+  become: true
+  apt:
+    name: xclip
+  tags:
+    - install
+    - productivity
