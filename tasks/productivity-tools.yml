@@ -1,4 +1,23 @@
+- name: Add I3 Gaps Apt Repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:regolith-linux/release
+    state: present
+    update_cache: true
+  tags:
+    - install
+    - productivity
+
+- name: Install I3 
+  become: true
+  apt:
+    name: ["i3status", "i3lock", "i3-gaps", "i3lock", "dmenu"]
+  tags:
+    - install
+    - productivity
+
 - name: Install Tmux
+  become: true
   apt:
     name: tmux
   tags:
