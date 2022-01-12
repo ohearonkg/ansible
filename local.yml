@@ -31,3 +31,4 @@
     - include: tasks/dotfiles.yml
     - include: tasks/node.yml
     - include: tasks/nvim.yml
+    - include: tasks/customization.yml
